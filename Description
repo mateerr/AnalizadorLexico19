@@ -1,0 +1,22 @@
+🚀 Analizador Léxico G19
+
+📋 Características Principales
+Los componentes léxicos a tener en cuenta son: id, constReal, constCadena, parentesisAbre, parentesisCierra,
+mas, menos, producto, división, puntoYComa, coma, punto, operadorRelacional, operadorAsignacion, y las
+palabras reservadas: program, begin, end, if, then, else, while, do, read, write.
+2. Se debe definir un procedimiento ObtenerSiguienteCompLex(Var Fuente:FileOfChar;Var Control:Longint;
+Var CompLex:TipoSimboloGramatical;Var Lexema:String;Var TS:TablaDeSimbolos) que devuelva el
+siguiente par (componenteLexico, Lexema) partiendo de la posición dada por Control dentro del archivo de
+texto Fuente.
+3. La Tabla de Símbolos se debe cargar previamente con todas las palabras reservadas.
+4. El TipoSimboloGramatical contiene todos los componentes léxicos, más un valor Error y el fin de archivo
+indicado por Pesos.
+5. En el programa principal se debe realizar un ciclo mientras el componente léxico sea distinto de error y de
+pesos.
+6. Fecha de entrega: 27/05/2026
+Manejo de Errores: Reporte detallado de errores léxicos con número de línea y columna.
+
+Interfaz: A Definir.
+
+🛠️ Tecnologías Utilizadas
+Lenguaje: Pascal (Lazarus Based)
