@@ -33,7 +33,7 @@ end;
 
 
 Procedure ObtenerSiguienteCompLex(Var Fuente:FileOfChar;Var Control:Longint; Var CompLex:TipoSimboloGramatical;Var Lexema:String;Var TS:TablaDeSimbolos);
-. . . 
+
 Begin {La TSA ya ingresa cargada con las Palabras Reservadas}
   {Avanzar el Control salteando todos los caracteres de control y espacios, hasta el primer carácter significativo}
   If EsIdentificador(Fuente,Control,Lexema) then
