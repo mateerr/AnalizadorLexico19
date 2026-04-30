@@ -33,7 +33,7 @@ end;
 
 
 Procedure ObtenerSiguienteCompLex(Var Fuente:FileOfChar;Var Control:Longint; Var CompLex:TipoSimboloGramatical;Var Lexema:String;Var TS:TablaDeSimbolos);
-
+. . . 
 Begin {La TSA ya ingresa cargada con las Palabras Reservadas}
   {Avanzar el Control salteando todos los caracteres de control y espacios, hasta el primer carácter significativo}
   If EsIdentificador(Fuente,Control,Lexema) then
@@ -48,32 +48,41 @@ Begin {La TSA ya ingresa cargada con las Palabras Reservadas}
 
     Function EsIdentificador(Cadena:String):Boolean;
 Const
-  q0=0;
-  F=[0];
+  F=[1]; //Conjunto de estados finales
 Type
-  Q=0..2;
-  Sigma=(Letra, Digito, Otro);
+  Q=0..2; //Numero de estados
+  Sigma=(Letra, Digito, Guion, Otro);
   TipoDelta=Array[Q,Sigma] of Q;
 Var
-  Control:Integer;
+  Control:Integer; //Control para recorrer la cadena de entrada
   EstadoActual:Q;
   Delta:TipoDelta;
 Begin
-  {Cargar la tabla de transiciones}
-  Delta[0,Letra]:=1;
-  Delta[0,Digito]:=2;
-  . . .
-  {Recorrer la cadena de entrada y cambiar estados}
-  EstadoActual:=q0;
-  For Control:=1 to Length(Cadena) do
+  {Aca definimos la función de transición, para cada estado y cada símbolo del alfabeto,
+   indicando a qué estado se transita, en el caso del estado muerto, no colocamos transiciones
+   para que al primer contacto, ya no acepte la cadena}
+  Delta[0,Letra]:=1;Delta[0,Digito]:=2;Delta[0,Otro]:=2;Delta[0,Guion]:=2;
+  Delta[1,Letra]:=1;Delta[1,Digito]:=1;Delta[1,Guion]:=1;Delta[1,Otro]:=2;
+  
+  EstadoActual:=0; //colocamos el estado inicial
+  control:=1; //inicializamos el recorrido de la cadena desde el primer caracter
+  While (Control <= Length(Cadena)) and (EstadoActual <> 2) do //lo recorremos hasta que termine la cadena o bien llegue al estado muerto
+  Begin
     EstadoActual:=Delta[EstadoActual,CarASimb(Cadena[Control])];
+    Control:=Control+1;
+  end;
+
+//Si llego al estado final devuelve verdadero, caso contrario devuelve falso
   EsIdentificador:=EstadoActual in F;
 End;
+
 Function CarASimb(Car:Char):Sigma;
 Begin
+//Aqui cargamos todos los simbolos que debe reconocer segun su categoria
   Case Car of
     'a'..'z', 'A'..'Z':CarASimb:=Letra;
     '0'..'9'          :CarASimb:=Digito;
+    '_'               :CarASimb:=Guion;
   else
     CarASimb:=Otro
   End;
