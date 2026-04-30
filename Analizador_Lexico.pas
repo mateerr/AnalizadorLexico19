@@ -45,3 +45,36 @@ Begin {La TSA ya ingresa cargada con las Palabras Reservadas}
   else . . .
   else if Not EsSimboloEspecial(Fuente,Control,Lexema,CompLex) then
     CompLex:=ErrorLexico
+
+    Function EsIdentificador(Cadena:String):Boolean;
+Const
+  q0=0;
+  F=[0];
+Type
+  Q=0..2;
+  Sigma=(Letra, Digito, Otro);
+  TipoDelta=Array[Q,Sigma] of Q;
+Var
+  Control:Integer;
+  EstadoActual:Q;
+  Delta:TipoDelta;
+Begin
+  {Cargar la tabla de transiciones}
+  Delta[0,Letra]:=1;
+  Delta[0,Digito]:=2;
+  . . .
+  {Recorrer la cadena de entrada y cambiar estados}
+  EstadoActual:=q0;
+  For Control:=1 to Length(Cadena) do
+    EstadoActual:=Delta[EstadoActual,CarASimb(Cadena[Control])];
+  EsIdentificador:=EstadoActual in F;
+End;
+Function CarASimb(Car:Char):Sigma;
+Begin
+  Case Car of
+    'a'..'z', 'A'..'Z':CarASimb:=Letra;
+    '0'..'9'          :CarASimb:=Digito;
+  else
+    CarASimb:=Otro
+  End;
+End;
