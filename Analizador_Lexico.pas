@@ -44,6 +44,7 @@ Begin {La TS ya ingresa cargada con las Palabras Reservadas}
         Complex:=constCadena
   else if Not EsSimboloEspecial(Fuente,Control,Lexema,CompLex) then
     CompLex:=ErrorLexico
+  end;
 
 Function CarASimbId(Car:Char):Sigma;
 Begin
@@ -55,7 +56,7 @@ Begin
   else
     CarASimbId:=Otro
   End;
-End;
+end;
 
 Function CarASimbReal(Car:Char):Sigma;
 Begin
@@ -107,7 +108,7 @@ Begin
   {Aca definimos la función de transición, para cada estado y cada símbolo del alfabeto,
    indicando a qué estado se transita, en el caso del estado muerto, no colocamos transiciones
    para que al primer contacto, ya no acepte la cadena}
-  Delta[0,Letra]:=1;Delta[0,Digito]:=2;Delta[0,Otro]:=2;Delta[0,Guion]:=2;
+  Delta[0,Letra]:=1;Delta[0,Digito]:=2;Delta[0,Otro]:=2;Delta[0,Guion]:=2; 
   Delta[1,Letra]:=1;Delta[1,Digito]:=1;Delta[1,Guion]:=1;Delta[1,Otro]:=2;
   
   EstadoActual:=0; //colocamos el estado inicial
@@ -198,6 +199,7 @@ Begin
   EstadoActual:=0; //colocamos el estado inicial
   control:=1; //inicializamos el recorrido de la cadena desde el primer caracter
   
+
   While (Control <= Length(Cadena)) and (EstadoActual <> 6) do //lo recorremos hasta que termine la cadena o bien llegue al estado muerto
   
   Begin
@@ -241,4 +243,5 @@ Begin
 
 //Si llego al estado final devuelve verdadero, caso contrario devuelve falso
   EsConstanteCadena:=EstadoActual in F;
-End;
+  End;
+end;
