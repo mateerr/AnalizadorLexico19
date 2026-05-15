@@ -5,7 +5,7 @@ palabras reservadas: program, begin, end, if, then, else, while, do, read, write
 MaxSim=200;
    FinArch=#0;
 type
-  TipoSimboloGramatical=(Tid,Tcreal,Tcad,Twhile,Tif,Tvar,Tpunto,Tpycom,Tcoma,Tdosp,Tmenos,Tmas,pesos,error);
+  TipoSimboloGramatical=(Tid,TcReal,Tcad,TParenA,TParenC,Tmas,Tmenos,Tproducto,Tdivisión,TpuntoYComa,Tcoma,Tpunto,TopRel,TopAsign,Tprogram,Tbegin,Tend,Tif,Tthen,Telse,Twhile,Tdo,Tread,Twrite);
   FileOfChar= file of char;
   TElemTS= record //Tabla de Elementos de Tabla de Simbolos
    compLex:TipoSimboloGramatical;
