@@ -126,14 +126,23 @@ Begin
   lexema := '';
   While EstadoActual <> 2 do
   Begin
+
     LeerCar(Fuente,Control,Car);
     EstadoActual:=Delta[EstadoActual,Sigma(CarASimbId(Car))];
+
     if EstadoActual <> 2 then
+      Begin
       lexema:=lexema+car;
+      inc(control);
+      end;
+
   end;
 
-  If EstadoActual in F then
+  If (EstadoActual in F) or (Length(lexema) > 0) then
     EsIdentificador:=True
+    Else
+      EsIdentificador:=False;
+
 End;
 
 end.
