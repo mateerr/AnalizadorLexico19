@@ -528,7 +528,6 @@ Begin
 
 End;
 
-
 Function ExisteEnTs(Var Lexema: String; Var TS: tFileTS; Var CompLex: TipoSimboloGramatical): Boolean;
 
 Var 
@@ -552,7 +551,6 @@ Begin
       i := i+1;
     End;
 End;
-
 
 Procedure InstalarEnTS(Lexema: String; Var TS: tFileTS; CompLex: TipoSimboloGramatical);
 
