@@ -8,7 +8,7 @@ Const rutaChar = '.\Fuente.dat'; rutaTS ='.\TablaSimbolos.dat';MaxSim=200;FinArc
 
    type
      TipoSimboloGramatical=(Tid,TcReal,Tcad,TParenA,TParenC,Tmas,Tmenos,Tproducto,Tdivision,TpuntoYComa,
-     Tcoma,Tpunto,TopRel,TopAsign,Tprogram,Tbegin,Tend,Tif,Tthen,Telse,Twhile,Tdo,Tread,Twrite,ErrorLexico,Pesos);
+     Tcoma,Tpunto,TopRel,TopAsign,Tprogram,Tbegin,Tend,Tif,Tthen,Telse,Twhile,Tdo,Tread,Twrite,ErrorLexico,Pesos,Inicial);
 
      TElemTS = record
       compLex:TipoSimboloGramatical;
@@ -29,6 +29,7 @@ procedure AsignarArchivoChar(Var Fuente:tFileChar);
 Procedure AbrirOCrearArchivoChar(var Fuente:tFileChar);
 Procedure CerrarArchivoChar(var Fuente:tFileChar);
 Procedure LeerArchivoChar(Var Fuente:tFileChar; Var x:char; PosicionArch:longint);
+Function FinArchivo (Var Fuente:tFileChar):Boolean;
 
 procedure AsignarArchivoTS(Var TablaSimb:tFileTS);
 Procedure AbrirOCrearArchivoTS(var TablaSimb:tFileTS);
@@ -59,6 +60,10 @@ Procedure LeerArchivoChar(Var Fuente:tFileChar; Var x:char; PosicionArch:longint
 Begin
   Seek(Fuente,PosicionArch);
   Read(Fuente,x);
+end;
+Function FinArchivo (Var Fuente:tFileChar):Boolean;
+Begin
+  If EOF(Fuente) then FinArchivo := TRUE;
 end;
 
 procedure AsignarArchivoTS(Var TablaSimb:tFileTS);
