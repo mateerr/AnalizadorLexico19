@@ -31,7 +31,6 @@ Begin
      PalabraReservadas[8].Lexema := 'do'; PalabraReservadas[8].CompLex := TipoSimboloGramatical(21);
      PalabraReservadas[9].Lexema := 'write'; PalabraReservadas[9].CompLex := TipoSimboloGramatical(22);
      PalabraReservadas[10].Lexema:= 'read'; PalabraReservadas[10].CompLex := TipoSimboloGramatical(23);
-  AbrirOCrearArchivoTS(TS);
   i := 0;
   While i < 10 do
   Begin
@@ -57,6 +56,7 @@ Var Control:Longint;CompLex:TipoSimboloGramatical;Lexema:String;
    Begin
      AsignarArchivoChar(Fuente);
      AsignarArchivoTS(TablaSimb);
+     AbrirOCrearArchivoTS(TablaSimb);
      AbrirOCrearArchivoChar(Fuente);
      CompLex := TipoSimboloGramatical(Inicial);
      Control := 0;
@@ -66,6 +66,7 @@ Var Control:Longint;CompLex:TipoSimboloGramatical;Lexema:String;
        CompLex := TipoSimboloGramatical(Inicial);
          ObtenerSiguienteCompLex(Fuente,Control,CompLex,Lexema,TablaSimb);
          end;
+         CerrarArchivoTS(TablaSimb);
      CerrarArchivoChar(Fuente);
      end;
 procedure LeerCar(var Fuente:tFileChar;var control:Longint; var car:char);
