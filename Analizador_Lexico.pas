@@ -1,7 +1,8 @@
 program Analizador_Lexico;
 
-Uses UnitArchivo,UnidadDeAnalizadorLexico;
+Uses UnitArchivo,UnidadDeAnalizadorLexico, UnitListaPosicional;
 
 Begin
-   ComenzarPrograma(Fuente,TablaSimb);
-end.  
+   ComenzarPrograma(Fuente,Lista);
+end.
+         
